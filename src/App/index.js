@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
-import { BrowserRouter as Router } from 'react-router-dom';
 import 'firebase/auth';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.scss';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 
 function App() {
   // When you set up firebase add setUser method and change useState to null.
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(null);
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
       if (authed) {
