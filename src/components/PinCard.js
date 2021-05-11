@@ -33,7 +33,7 @@ const PinCard = ({
   };
 
   return (
-    <Card id={firebaseKey}>
+    <Card>
       <CardImg className="card-img" top width="100%" src={imageUrl} />
       <CardTitle tag="h5">{title}</CardTitle>
       <CardText>{description}</CardText>
