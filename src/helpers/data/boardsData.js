@@ -1,6 +1,7 @@
 import 'firebase/auth';
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
+import { getSinglePin } from './pinsData';
 
 const dbUrl = firebaseConfig.databaseURL;
 // GET BOARDS
@@ -15,5 +16,12 @@ const getSingleBoard = (id) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
-
-export { getBoards, getSingleBoard };
+const getSingleBoardPins = (boardId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/board_pins.json?orderBy="boardId"&equalTo="${boardId}"`)
+    .then((response) => {
+      const mappedPins = Object.values(response.data).map((boardPin) => getSinglePin(boardPin.pinId));
+      Promise.all(mappedPins).then((x) => resolve(x));
+    })
+    .catch((error) => reject(error));
+});
+export { getBoards, getSingleBoard, getSingleBoardPins };
