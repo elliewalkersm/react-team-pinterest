@@ -1,29 +1,41 @@
-# React Template
+# React Team Pinterest [![Netlify Status](https://api.netlify.com/api/v1/badges/0a918ee4-56bd-41a8-bd8e-de708c0dc714/deploy-status)](https://app.netlify.com/sites/elephant-pinterest/deploys)
 
-**Use this template to get up and running quickly on projects.**
-
-## Get Started
-```npm i``` to install dependencies!
+Hello, and welcome to React Team Pinterest. This is a remix of the popular social media site, Pinterest built in REACT!
 
 
-- [Steps to deploy](https://github.com/nss-nightclass-projects/REACT-Deployment-Netlify)
-### Helpful JS tool docs!
-- [MomentJS](https://momentjs.com/) Great library for date/time related processes
-- [React Router](https://reactrouter.com/) Essential to using links and making a SPA look like multiple pages.
-- [React](https://reactjs.org/) React docs
-- [Reactstrap](https://reactstrap.github.io/) Bootstrap for react!
-- [Semantic UI](https://react.semantic-ui.com/)
-- [React Animation](https://nearform.github.io/react-animation/) Awesome simple to use library for quick easy component based animations
+## Relevant Links
 
-# README template
+- [Deployed Site](https://elephant-pinterest.netlify.app/)
+- [Wireframes](https://lucid.app/lucidchart/9a2f13ab-3551-43a2-9a06-c8674cfa2d65/edit?page=hJrBuQjSUnw_#)
+- [ERD](https://dbdiagram.io/d/606d0baaecb54e10c33f0247)
+- [Project Board](https://github.com/elliewalkersm/react-team-pinterest/projects)
 
-## Name of the project
-Overview of the project
-### Link to your wireframes/prototype
-### Link to the deployed project
-### Link to your project board
+
+### Project Screenshot
+
+
+
 ### User Stories
-### Features
-### Screenshots
-### Contributors
-### Loom video walkthrough
+
+- When user is logged in and the page loads, User is able to see all the boards that belong to them.
+- User is able to see single board view that shows all pins for that board.
+- User is able to delete a pin from a board.
+- User is able to delete a boards.
+- User is able to delete one of my boards and all the pins associated with that board.
+- User is able to create a new pin.
+- User is able to create a new board.
+- As a user, I should be able to change which board a pin belongs to.
+- 
+
+### Functionality Includes: 
+- [ ] Create
+- [ ] Read
+- [ ] Update
+- [ ] Delete
+
+
+## Contributors
+- [Chris Meffley](https://github.com/cmeffley)
+- [Ellie Walker](https://github.com/elliewalkersm)
+- [Jesse Robinson](https://github.com/danicrosby)
+- [Dani Crosby](https://github.com/jrobinson0529)
