@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 import { addBoard } from '../helpers/data/boardsData';
 
-function AddForm({ user }) {
+function AddBoardForm({ user, formTitle }) {
   const [data, setData] = useState({
     title: '',
     imageUrl: '',
@@ -29,11 +29,11 @@ function AddForm({ user }) {
 
   return (
     <div>
-      <Form className='form-container'
+      <Form className='board-form-container'
       autoComplete='off'
       onSubmit={handleSubmit}
       >
-        <h2>Add Board</h2>
+        <h2>{formTitle}</h2>
         <Label>Board Title</Label>
         <Input
           name='title'
@@ -66,8 +66,9 @@ function AddForm({ user }) {
   );
 }
 
-AddForm.propTypes = {
-  user: PropTypes.string
+AddBoardForm.propTypes = {
+  user: PropTypes.string,
+  formTitle: PropTypes.string
 };
 
-export default AddForm;
+export default AddBoardForm;
