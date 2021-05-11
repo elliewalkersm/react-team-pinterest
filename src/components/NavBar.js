@@ -25,10 +25,10 @@ const NavBar = ({ user }) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <Link className="nav-link" to="/about">About</Link>
+              <Link className="nav-link" to="/boards">Boards</Link>
             </NavItem>
             <NavItem>
-              <Link className="nav-link" to="/users">Users</Link>
+              <Link className="nav-link" to="/pins">Pins</Link>
             </NavItem>
           </Nav>
           { user !== null
