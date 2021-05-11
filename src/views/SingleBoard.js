@@ -27,8 +27,8 @@ function SingleBoard() {
   }, []);
   return (
     <div>
-      { !board ? 'Loading...' : <h1>{board.title}</h1>}
-      { !boardPins ? 'Loading...' : boardPins.map((object) => <p key={object.id}>{object.title}</p>)}
+      { board === null ? 'Loading...' : <h1>{board.title}</h1>}
+      { boardPins === null ? 'Loading...' : boardPins.map((object) => <p key={object.id}>{object.title}</p>)}
     </div>
   );
 }
