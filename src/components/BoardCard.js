@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const BoardCard = ({
-  setBoard,
   uid,
   ...boardInfo
 }) => {
@@ -32,9 +31,8 @@ const BoardCard = ({
 };
 
 BoardCard.propTypes = {
-  boardInfo: PropTypes.object.isRequired,
+  boardInfo: PropTypes.object,
   uid: PropTypes.any,
-  setBoard: PropTypes.func.isRequired
 };
 
 export default BoardCard;

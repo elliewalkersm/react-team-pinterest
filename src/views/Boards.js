@@ -4,13 +4,11 @@ import BoardCard from '../components/BoardCard';
 import { getBoards } from '../helpers/data/boardsData';
 
 function Boards({ user }) {
-  const [boards, setBoards] = useState({});
+  const [boards, setBoards] = useState([]);
 
   useEffect(() => {
     getBoards(user?.uid).then((response) => setBoards(response));
   }, []);
-
-  console.warn(boards);
 
   return (
     <>
