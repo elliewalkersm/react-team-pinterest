@@ -37,5 +37,5 @@ Hello, and welcome to React Team Pinterest. This is a remix of the popular socia
 ## Contributors
 - [Chris Meffley](https://github.com/cmeffley)
 - [Ellie Walker](https://github.com/elliewalkersm)
-- [Jesse Robinson](https://github.com/danicrosby)
-- [Dani Crosby](https://github.com/jrobinson0529)
+- [Jesse Robinson](https://github.com/jrobinson0529)
+- [Dani Crosby](https://github.com/danicrosby)
