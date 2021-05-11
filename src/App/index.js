@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './App.scss';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
+import AddForm from '../components/AddForm';
 
 function App() {
   // When you set up firebase add setUser method and change useState to null.
@@ -44,6 +45,7 @@ function App() {
         <NavBar user={user}/>
         <Routes />
       </Router>
+      <AddForm/>
     </div>
   );
 }
