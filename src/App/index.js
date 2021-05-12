@@ -6,7 +6,6 @@ import './App.scss';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import { getBoards } from '../helpers/data/boardsData';
-import PinForm from '../views/PinForm';
 
 function App() {
   // When you set up firebase add setUser method and change useState to null.
@@ -34,7 +33,6 @@ function App() {
         <NavBar user={user}/>
         <Routes user={user} boards={boards} setBoards={setBoards}/>
       </Router>
-      <PinForm />
     </div>
   );
 }

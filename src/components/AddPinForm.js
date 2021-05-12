@@ -11,6 +11,7 @@ import { addPin } from '../helpers/data/pinsData';
 function AddPinForm({
   user, formTitle, boards, setBoards, ...pinInfo
 }) {
+  console.warn(boards);
   const [pin, setPin] = useState({
     title: pinInfo?.title || '',
     imageUrl: pinInfo?.imageUrl || '',
@@ -38,7 +39,7 @@ function AddPinForm({
 
   return (
     <div>
-      <Form className='board-form-container'
+      <Form className='pin-form-container'
       autoComplete='off'
       onSubmit={handleSubmit}
       >
@@ -65,14 +66,14 @@ function AddPinForm({
         <Input
           name='description'
           type='textarea'
-          placeholder='Board Description'
+          placeholder='Pin Description'
           value={pin.description}
           onChange={handleInputChange}>
         </Input>
         <Label>Article Link</Label>
         <Input
           name='articleLink'
-          type='textarea'
+          type='text'
           placeholder='Article Link'
           value={pin.articleLink}
           onChange={handleInputChange}>
@@ -82,7 +83,7 @@ function AddPinForm({
         onChange={handleSelectChange}>
           {boards.map((board) => <option
             key={board.id}
-            value={board.value}
+            value={board.id}
           >
             {board.title}
           </option>)}
