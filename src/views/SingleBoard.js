@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import PinCard from '../components/PinCard';
 import { getSingleBoard, getSingleBoardPins } from '../helpers/data/boardsData';
 
 function SingleBoard() {
@@ -27,8 +28,16 @@ function SingleBoard() {
   }, []);
   return (
     <div>
-      { board === null ? 'Loading...' : <h1>{board.title}</h1>}
-      { boardPins === null ? 'Loading...' : boardPins.map((object) => <p key={object.id}>{object.title}</p>)}
+      <header>
+        { board === null ? 'Loading...' : <h1>{board.title}</h1>}
+      </header>
+      <div className='d-flex'>
+        { boardPins === null ? 'Loading...' : boardPins.map((object) => <PinCard
+          key={object.id}
+          {...object}
+          setBoardPins={setBoardPins} />)
+        }
+      </div>
     </div>
   );
 }
