@@ -31,9 +31,23 @@ const mergePinsData = () => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+// ADD PIN
+const addPin = (board, uid) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/pins.json`, board)
+    .then((response) => {
+      const body = { id: response.data.name };
+      axios.patch(`${dbUrl}/pins/${response.data.name}.json`, body)
+        .then(() => {
+          getPins(uid).then((boardArray) => resolve(boardArray));
+        });
+    })
+    .catch((error) => reject(error));
+});
+
 export {
   getPins,
   getSinglePin,
   deletePin,
-  mergePinsData
+  mergePinsData,
+  addPin
 };
