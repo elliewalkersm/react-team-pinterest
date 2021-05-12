@@ -8,12 +8,14 @@ import {
 } from 'reactstrap';
 import { addBoard } from '../helpers/data/boardsData';
 
-function AddBoardForm({ user, formTitle, ...boardInfo }) {
+function AddBoardForm({
+  user, setBoards, formTitle, ...boardInfo
+}) {
   const [board, setBoard] = useState({
     title: boardInfo?.title || '',
     imageUrl: boardInfo?.imageUrl || '',
     description: boardInfo?.description || '',
-    uid: user.uid,
+    // uid: user.uid,
     id: boardInfo?.id || null
   });
 
@@ -26,7 +28,7 @@ function AddBoardForm({ user, formTitle, ...boardInfo }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBoard(board, user).then(setBoard);
+    addBoard(board, user).then(setBoards);
   };
 
   return (
@@ -71,7 +73,8 @@ function AddBoardForm({ user, formTitle, ...boardInfo }) {
 AddBoardForm.propTypes = {
   user: PropTypes.any,
   formTitle: PropTypes.string,
-  boardInfo: PropTypes.object
+  boardInfo: PropTypes.object,
+  setBoards: PropTypes.func,
 };
 
 export default AddBoardForm;

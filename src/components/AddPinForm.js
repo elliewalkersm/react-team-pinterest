@@ -8,7 +8,9 @@ import {
 } from 'reactstrap';
 import { addPin } from '../helpers/data/pinsData';
 
-function AddPinForm({ user, formTitle, ...pinInfo }) {
+function AddPinForm({
+  user, formTitle, boards, setBoards, ...pinInfo
+}) {
   const [pin, setPin] = useState({
     title: pinInfo?.title || '',
     imageUrl: pinInfo?.imageUrl || '',
@@ -25,6 +27,10 @@ function AddPinForm({ user, formTitle, ...pinInfo }) {
     }));
   };
 
+  const handleSelectChange = (e) => {
+    setBoards(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     addPin(pin, user).then(setPin);
@@ -32,11 +38,6 @@ function AddPinForm({ user, formTitle, ...pinInfo }) {
 
   return (
     <div>
-      <div id='react-search'>
-        <select value={board.title}>
-          <option></option>
-        </select>
-      </div>
       <Form className='board-form-container'
       autoComplete='off'
       onSubmit={handleSubmit}
@@ -76,6 +77,16 @@ function AddPinForm({ user, formTitle, ...pinInfo }) {
           value={pin.articleLink}
           onChange={handleInputChange}>
         </Input>
+        <Label>Assign to a new Board</Label>
+        <Input type='select' value={boards.title}
+        onChange={handleSelectChange}>
+          {boards.map((board) => <option
+            key={board.id}
+            value={board.value}
+          >
+            {board.title}
+          </option>)}
+        </Input>
         <Button color='success' type='submit'>Submit</Button>
       </Form>
     </div>
@@ -85,7 +96,9 @@ function AddPinForm({ user, formTitle, ...pinInfo }) {
 AddPinForm.propTypes = {
   user: PropTypes.any,
   formTitle: PropTypes.string,
-  boardInfo: PropTypes.object
+  boardInfo: PropTypes.object,
+  boards: PropTypes.array,
+  setBoards: PropTypes.func
 };
 
 export default AddPinForm;
