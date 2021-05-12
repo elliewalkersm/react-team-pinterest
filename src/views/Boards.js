@@ -20,7 +20,7 @@ function Boards({ user }) {
             setBoards={setBoards}
             user={user}
           />
-        ))};
+        ))}
       </div>
     </>
   );
