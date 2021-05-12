@@ -8,15 +8,17 @@ import {
 } from 'reactstrap';
 import { addBoard } from '../helpers/data/boardsData';
 
-function AddBoardForm({ user, formTitle }) {
-  const [data, setData] = useState({
-    title: '',
-    imageUrl: '',
-    description: ''
+function AddBoardForm({ user, formTitle, ...boardInfo }) {
+  const [board, setBoard] = useState({
+    title: boardInfo?.title || '',
+    imageUrl: boardInfo?.imageUrl || '',
+    description: boardInfo?.description || '',
+    uid: user.uid,
+    id: boardInfo?.id || null
   });
 
   const handleInputChange = (e) => {
-    setData((prevState) => ({
+    setBoard((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value
     }));
@@ -24,7 +26,7 @@ function AddBoardForm({ user, formTitle }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBoard(data, user).then(setData);
+    addBoard(board, user).then(setBoard);
   };
 
   return (
@@ -39,16 +41,16 @@ function AddBoardForm({ user, formTitle }) {
           name='title'
           type='text'
           placeholder='Board Title'
-          value={data.title}
+          value={board.title}
           onChange={handleInputChange}
         >
         </Input>
         <Label>Image</Label>
         <Input
           name='imageUrl'
-          type='image'
+          type='text'
           placeholder='Image URL'
-          value={data.imageUrl}
+          value={board.imageUrl}
           onChange={handleInputChange}
         >
         </Input>
@@ -57,7 +59,7 @@ function AddBoardForm({ user, formTitle }) {
           name='description'
           type='textarea'
           placeholder='Board Description'
-          value={data.description}
+          value={board.description}
           onChange={handleInputChange}>
         </Input>
         <Button color='success' type='submit'>Submit</Button>
@@ -67,8 +69,9 @@ function AddBoardForm({ user, formTitle }) {
 }
 
 AddBoardForm.propTypes = {
-  user: PropTypes.string,
-  formTitle: PropTypes.string
+  user: PropTypes.any,
+  formTitle: PropTypes.string,
+  boardInfo: PropTypes.object
 };
 
 export default AddBoardForm;

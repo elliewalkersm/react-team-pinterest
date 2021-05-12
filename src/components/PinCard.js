@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Card,
@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { deletePin } from '../helpers/data/pinsData';
-import PinForm from './PinForm';
+// import PinForm from './PinForm';
 
 const PinCard = ({
   firebaseKey,
@@ -42,12 +42,12 @@ const PinCard = ({
         {editing ? 'Close Form' : 'Edit Pin'}
       </Button>
       {
-        editing && <PinForm
-          formTitle='Edit Pin'
-          setPins={setPins}
-          firebaseKey={firebaseKey}
-          title={title}
-        />
+        // editing && <PinForm
+        //   formTitle='Edit Pin'
+        //   setPins={setPins}
+        //   firebaseKey={firebaseKey}
+        //   title={title}
+        // />
       }
     </Card>
   );

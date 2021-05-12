@@ -2,19 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AddBoardForm from '../components/AddBoardForm';
 
-function BoardForm({ user }) {
+function BoardForm({ user, setBoard }) {
   return (
     <div>
       <AddBoardForm
-        forTitle='Add Board'
+        formTitle='Add Board'
         user={user}
+        setBoard={setBoard}
       />
     </div>
   );
 }
 
 BoardForm.propTypes = {
-  user: PropTypes.string
+  user: PropTypes.any,
+  setBoard: PropTypes.func
 };
 
 export default BoardForm;

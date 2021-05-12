@@ -20,7 +20,7 @@ const getSingleBoard = (id) => new Promise((resolve, reject) => {
 const addBoard = (board, uid) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/boards.json`, board)
     .then((response) => {
-      const body = { firebaseKey: response.data.name };
+      const body = { id: response.data.name };
       axios.patch(`${dbUrl}/boards/${response.data.name}.json`, body)
         .then(() => {
           getBoards(uid).then((boardArray) => resolve(boardArray));
