@@ -23,7 +23,6 @@ const PinCard = ({ setBoardPins, ...object }) => {
       default:
     }
   };
-
   return (
     <Card>
       <CardImg className="card-img" top width="100%" src={object.imageUrl} />

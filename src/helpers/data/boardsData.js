@@ -24,4 +24,20 @@ const getSingleBoardPins = (boardId) => new Promise((resolve, reject) => {
     })
     .catch((error) => reject(error));
 });
-export { getBoards, getSingleBoard, getSingleBoardPins };
+
+// ADD BOARD
+const addBoard = (board, uid) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/boards.json`, board)
+    .then((response) => {
+      const body = { id: response.data.name };
+      axios.patch(`${dbUrl}/boards/${response.data.name}.json`, body)
+        .then(() => {
+          getBoards(uid).then((boardArray) => resolve(boardArray));
+        });
+    })
+    .catch((error) => reject(error));
+});
+
+export {
+  getBoards, getSingleBoard, addBoard, getSingleBoardPins
+};
