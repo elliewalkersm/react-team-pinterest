@@ -10,6 +10,7 @@ import {
   NavItem,
   Button,
 } from 'reactstrap';
+import pinterestBadge from '../styles/assets/pinterestBadge.webp';
 import { signInUser, signOutUser } from '../helpers/auth';
 
 const NavBar = ({ user }) => {
@@ -19,11 +20,12 @@ const NavBar = ({ user }) => {
 
   return (
     <div>
-      <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/">Home</NavbarBrand>
+      <Navbar color="light" light expand="xl" sticky="top">
+        <NavbarBrand href="/"><img src={pinterestBadge} alt="Logo" className="logo" />
+      </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="ml-auto" navbar>
             <NavItem>
               <Link className="nav-link" to="/boards">Boards</Link>
             </NavItem>
