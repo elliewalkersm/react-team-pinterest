@@ -20,7 +20,7 @@ const getSingleBoardPins = (boardId) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/board_pins.json?orderBy="boardId"&equalTo="${boardId}"`)
     .then((response) => {
       const mappedPins = Object.values(response.data).map((boardPin) => getSinglePin(boardPin.pinId));
-      Promise.all(mappedPins).then((x) => resolve(x));
+      Promise.all(mappedPins).then((pinObjects) => resolve(pinObjects));
     })
     .catch((error) => reject(error));
 });
