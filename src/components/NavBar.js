@@ -30,6 +30,9 @@ const NavBar = ({ user }) => {
             <NavItem>
               <Link className="nav-link" to="/pins">Pins</Link>
             </NavItem>
+            <NavItem>
+              <Link className="nav-link" to="/add-boards">Add Board</Link>
+            </NavItem>
           </Nav>
           { user !== null
             && <div className='auth-btn-container'>
