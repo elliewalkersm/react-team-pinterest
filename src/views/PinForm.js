@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddPinForm from '../components/AddBoardForm';
+import AddPinForm from '../components/AddPinForm';
 
-function PinForm({ user, setPin, setBoards }) {
+function PinForm({
+  user, setPin, boards, setBoards
+}) {
   return (
     <div>
       <AddPinForm
         formTitle='Add Pin'
         user={user}
+        boards={boards}
         setPin={setPin}
         setBoards={setBoards}
       />
@@ -17,6 +20,7 @@ function PinForm({ user, setPin, setBoards }) {
 
 PinForm.propTypes = {
   user: PropTypes.any,
+  boards: PropTypes.array,
   setPin: PropTypes.func,
   setBoards: PropTypes.func
 };

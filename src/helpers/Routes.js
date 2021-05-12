@@ -18,7 +18,7 @@ function Routes({
         <PrivateRoute exact path="/boards" component={() => <Boards user={user} boards={boards} setBoards={setBoards}/>} user={user}/>
         <PrivateRoute exact path="/boards/:id" component={() => <SingleBoard user={user} />} user={user}/>
         <PrivateRoute exact path="/add-boards" component={() => <BoardForm user={user} setBoards={setBoards}/>} user={user}/>
-        <PrivateRoute exact path="/add-pins" component={() => <PinForm user={user} setBoards={setBoards}/>} user={user}/>
+        <PrivateRoute exact path="/add-pins" component={() => <PinForm user={user} boards={boards} setBoards={setBoards}/>} user={user}/>
       </Switch>
     </div>
   );

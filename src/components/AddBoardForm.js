@@ -15,7 +15,7 @@ function AddBoardForm({
     title: boardInfo?.title || '',
     imageUrl: boardInfo?.imageUrl || '',
     description: boardInfo?.description || '',
-    // uid: user.uid,
+    uid: user.uid,
     id: boardInfo?.id || null
   });
 
