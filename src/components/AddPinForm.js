@@ -32,7 +32,11 @@ function AddPinForm({ user, formTitle, ...pinInfo }) {
 
   return (
     <div>
-      <div id='react-search'></div>
+      <div id='react-search'>
+        <select value={board.title}>
+          <option></option>
+        </select>
+      </div>
       <Form className='board-form-container'
       autoComplete='off'
       onSubmit={handleSubmit}
