@@ -27,9 +27,15 @@ const NavBar = ({ user }) => {
             <NavItem>
               <Link className="nav-link" to="/boards">Boards</Link>
             </NavItem>
+<<<<<<< HEAD
             {/* <NavItem>
               <Link className="nav-link" to="/pins">Pins</Link>
             </NavItem> */}
+=======
+            <NavItem>
+              <Link className="nav-link" to="/add-pins">Add Pins</Link>
+            </NavItem>
+>>>>>>> 4c1ee43cfaf47036725b1a5d91feb938df6369fe
             <NavItem>
               <Link className="nav-link" to="/add-boards">Add Board</Link>
             </NavItem>
