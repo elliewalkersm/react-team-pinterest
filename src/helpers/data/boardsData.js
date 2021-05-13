@@ -37,7 +37,19 @@ const addBoard = (board, uid) => new Promise((resolve, reject) => {
     })
     .catch((error) => reject(error));
 });
-
+const mergeBoardPinsData = (id) => new Promise((resolve, reject) => {
+  const getSingleBoardInfo = getSingleBoard(id);
+  const getPins = getSingleBoardPins(id);
+  Promise.all([getSingleBoardInfo, getPins]).then((response) => {
+    const [boardObject, pins] = response;
+    resolve([boardObject, pins]);
+  }).catch((error) => reject(error));
+});
+const deletePin = (pinId, boardId) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/pins/${pinId}.json`)
+    .then(() => mergeBoardPinsData(boardId).then((response) => resolve(response)))
+    .catch((error) => reject(error));
+});
 export {
-  getBoards, getSingleBoard, addBoard, getSingleBoardPins
+  getBoards, getSingleBoard, addBoard, getSingleBoardPins, mergeBoardPinsData, deletePin
 };

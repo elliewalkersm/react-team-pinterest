@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import PinCard from '../components/PinCard';
-import { getSingleBoard, getSingleBoardPins } from '../helpers/data/boardsData';
+import { mergeBoardPinsData } from '../helpers/data/boardsData';
 
 function SingleBoard() {
   const [board, setBoard] = useState({});
@@ -16,14 +16,12 @@ function SingleBoard() {
     };
   }, []);
   useEffect(() => {
-    const getSingleBoardInfo = getSingleBoard(id);
-    const getPins = getSingleBoardPins(id);
-    Promise.all([getSingleBoardInfo, getPins]).then((response) => {
-      const [boardObject, pins] = response;
+    mergeBoardPinsData(id).then((response) => {
       if (isMounted.current) {
-        setBoard(boardObject);
-        setBoardPins(pins);
+        setBoardPins(response[1]);
+        setBoard(response[0]);
       }
+      isMounted.current = true;
     });
   }, []);
   return (
@@ -32,7 +30,7 @@ function SingleBoard() {
         { board === null ? 'Loading...' : <h1>{board.title}</h1>}
       </header>
       <div className='d-flex'>
-        { boardPins === null ? 'Loading...' : boardPins.map((object) => <PinCard
+        { boardPins.length === 0 ? 'No pins to show' : boardPins.map((object) => <PinCard
           key={object.id}
           {...object}
           setBoardPins={setBoardPins} />)
