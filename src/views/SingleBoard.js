@@ -18,8 +18,8 @@ function SingleBoard() {
   useEffect(() => {
     mergeBoardPinsData(id).then((response) => {
       if (isMounted.current) {
-        setBoardPins(response[1]);
         setBoard(response[0]);
+        setBoardPins(response[1]);
       }
       isMounted.current = true;
     });
@@ -30,9 +30,10 @@ function SingleBoard() {
         { board === null ? 'Loading...' : <h1>{board.title}</h1>}
       </header>
       <div className='d-flex'>
-        { boardPins.length === 0 ? 'No pins to show' : boardPins.map((object) => <PinCard
+        { boardPins.includes(null) || boardPins.length <= 0 ? 'No pins to show' : boardPins.map((object) => <PinCard
           key={object.id}
           {...object}
+          boardId={id}
           setBoardPins={setBoardPins} />)
         }
       </div>

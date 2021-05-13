@@ -45,11 +45,18 @@ const mergeBoardPinsData = (id) => new Promise((resolve, reject) => {
     resolve([boardObject, pins]);
   }).catch((error) => reject(error));
 });
+const getSinglePinBoardRelationship = (pinId, boardId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/board_pins.json?orderBy="boardId"&equalTo="${boardId}"`)
+    .then((response) => {
+      resolve(Object.values(response.data).filter((object) => object.pinId === pinId));
+    }).catch((error) => reject(error));
+});
+
 const deletePin = (pinId, boardId) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/pins/${pinId}.json`)
     .then(() => mergeBoardPinsData(boardId).then((response) => resolve(response)))
     .catch((error) => reject(error));
 });
 export {
-  getBoards, getSingleBoard, addBoard, getSingleBoardPins, mergeBoardPinsData, deletePin
+  getBoards, getSingleBoard, addBoard, getSingleBoardPins, mergeBoardPinsData, deletePin, getSinglePinBoardRelationship
 };
