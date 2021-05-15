@@ -7,6 +7,7 @@ import {
   Input,
 } from 'reactstrap';
 import { addPin } from '../helpers/data/pinsData';
+import { createBoardPin } from '../helpers/data/board_pinsData';
 
 function AddPinForm({
   user, formTitle, boards, setBoards, ...pinInfo
@@ -20,6 +21,10 @@ function AddPinForm({
     uid: user.uid,
     id: pinInfo?.id || null
   });
+  const [boardPinRelationship, setBoardPinRelationship] = useState({
+    pinId: pinInfo?.id,
+    boardId: ''
+  });
 
   const handleInputChange = (e) => {
     setPin((prevState) => ({
@@ -29,12 +34,20 @@ function AddPinForm({
   };
 
   const handleSelectChange = (e) => {
-    setBoards(e.target.value);
+    setBoardPinRelationship((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addPin(pin, user).then(setPin);
+    addPin(pin).then((response) => {
+      setBoardPinRelationship((prevState) => ({
+        boardId: prevState.boardId,
+        pinId: response
+      }));
+    }).then(() => createBoardPin(boardPinRelationship));
   };
 
   return (
@@ -78,9 +91,12 @@ function AddPinForm({
           value={pin.articleLink}
           onChange={handleInputChange}>
         </Input>
-        <Label>Assign to a new Board</Label>
-        <Input type='select' value={boards.title}
-        onChange={handleSelectChange}>
+        <Label>Assign to a Board</Label>
+        <Input type='select'
+          name='boardId'
+          value={boards.title}
+          onChange={handleSelectChange}
+        >
           {boards.map((board) => <option
             key={board.id}
             value={board.id}
