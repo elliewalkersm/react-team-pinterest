@@ -22,7 +22,6 @@ function AddPinForm({
     id: pinInfo?.id || null
   });
   const [boardPinRelationship, setBoardPinRelationship] = useState({});
-  console.warn(boardPinRelationship);
 
   const handleInputChange = (e) => {
     setPin((prevState) => ({
