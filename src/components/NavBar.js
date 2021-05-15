@@ -30,7 +30,7 @@ const NavBar = ({ user }) => {
               <Link className="nav-link" to="/boards">Boards</Link>
             </NavItem>
             <NavItem>
-              <Link className="nav-link" to="/add-pins">Add Pins</Link>
+              <Link className="nav-link" to="/add-pins">Add Pin</Link>
             </NavItem>
             <NavItem>
               <Link className="nav-link" to="/add-boards">Add Board</Link>
