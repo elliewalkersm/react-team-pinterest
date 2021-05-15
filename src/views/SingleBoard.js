@@ -19,7 +19,7 @@ function SingleBoard() {
     mergeBoardPinsData(id).then((response) => {
       if (isMounted.current) {
         setBoard(response[0]);
-        setBoardPins(response[1]);
+        console.warn(response[1]);
       }
       isMounted.current = true;
     });
