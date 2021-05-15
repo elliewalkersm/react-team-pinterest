@@ -14,5 +14,4 @@ const deletePinBoardRelationship = (id) => new Promise((resolve, reject) => {
     .then(resolve)
     .catch((error) => reject(error));
 });
-
-export { getBoardPins, deletePinBoardRelationship };
+export { deletePinBoardRelationship, getBoardPins };

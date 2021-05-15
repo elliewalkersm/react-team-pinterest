@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Card, CardImg, CardText,
+  CardImg, CardText, CardBody,
   CardTitle, Button
 } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
@@ -35,7 +35,7 @@ const BoardCard = ({
 
   return (
   <>
-    <Card body>
+    <CardBody>
       <CardTitle img-fluid="true" tag="h5">{boardInfo.title}</CardTitle>
       <CardImg top width="100%" src={boardInfo.imageUrl} alt="Card image cap" />
       <CardText>{boardInfo.description}</CardText>
@@ -51,7 +51,7 @@ const BoardCard = ({
           setBoards={setBoards}
         />
       }
-    </Card>
+    </CardBody>
   </>
   );
 };

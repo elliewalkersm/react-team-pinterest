@@ -40,11 +40,31 @@ const addBoard = (board, uid) => new Promise((resolve, reject) => {
     })
     .catch((error) => reject(error));
 });
+const mergeBoardPinsData = (id) => new Promise((resolve, reject) => {
+  const getSingleBoardInfo = getSingleBoard(id);
+  const getPins = getSingleBoardPins(id);
+  Promise.all([getSingleBoardInfo, getPins]).then((response) => {
+    const [boardObject, pins] = response;
+    resolve([boardObject, pins]);
+  }).catch((error) => reject(error));
+});
+const getSinglePinBoardRelationship = (pinId, boardId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/board_pins.json?orderBy="boardId"&equalTo="${boardId}"`)
+    .then((response) => {
+      resolve(Object.values(response.data).filter((object) => object.pinId === pinId));
+    }).catch((error) => reject(error));
+});
 
 // UPDATE BOARD
 const updateBoard = (boards) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/boards/${boards.id}.json`, boards)
     .then(() => getBoards().then(resolve))
+    .catch((error) => reject(error));
+});
+
+const deletePin = (pinId, boardId) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/pins/${pinId}.json`)
+    .then(() => mergeBoardPinsData(boardId).then((response) => resolve(response)))
     .catch((error) => reject(error));
 });
 
@@ -64,5 +84,6 @@ const deleteBoard = (boardId, uid) => new Promise((resolve, reject) => {
 
 export {
   getBoards, getSingleBoard, addBoard, getSingleBoardPins,
-  updateBoard, deleteBoardRelationships, deleteBoard
+  updateBoard, deleteBoardRelationships, deleteBoard, mergeBoardPinsData,
+  getSinglePinBoardRelationship, deletePin
 };
