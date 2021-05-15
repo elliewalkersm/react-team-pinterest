@@ -33,7 +33,7 @@ const BoardCard = ({
   <>
     <Card className="board-card">
       <CardBody>
-        <CardTitle img-fluid tag="h5">{boardInfo.title}</CardTitle>
+        <CardTitle img-fluid="true" tag="h5">{boardInfo.title}</CardTitle>
         <CardImg top width="100%" src={boardInfo.imageUrl} alt="Card image cap" />
         <CardText>{boardInfo.description}</CardText>
         <Button color="danger" onClick={() => handleClick('delete')}>Delete</Button>
