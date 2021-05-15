@@ -8,6 +8,7 @@ const getBoardPins = () => new Promise((resolve, reject) => {
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
+
 const deletePinBoardRelationship = (id) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/board_pins/${id}.json`)
     .then(resolve)
