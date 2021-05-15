@@ -19,7 +19,8 @@ function SingleBoard() {
     mergeBoardPinsData(id).then((response) => {
       if (isMounted.current) {
         setBoard(response[0]);
-        console.warn(response[1]);
+        setBoardPins(response[1]);
+        console.warn(response);
       }
       isMounted.current = true;
     });
@@ -30,7 +31,7 @@ function SingleBoard() {
         { board === null ? 'Loading...' : <h1>{board.title}</h1>}
       </header>
       <div className='d-flex'>
-        { boardPins.includes(null) || boardPins.length <= 0 ? 'No pins to show' : boardPins.map((object) => <PinCard
+        { boardPins.length <= 0 ? 'No pins to show' : boardPins.map((object) => <PinCard
           key={object.id}
           {...object}
           boardId={id}
