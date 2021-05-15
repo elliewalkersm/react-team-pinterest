@@ -38,6 +38,14 @@ const addBoard = (board, uid) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// UPDATE BOARD
+const updateBoard = (board) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/boards/${board.firebaseKey}.json`, board)
+    .then(() => getBoards().then(resolve))
+    .catch((error) => reject(error));
+});
+
 export {
-  getBoards, getSingleBoard, addBoard, getSingleBoardPins
+  getBoards, getSingleBoard, addBoard, getSingleBoardPins,
+  updateBoard
 };

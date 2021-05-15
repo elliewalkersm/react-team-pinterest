@@ -6,7 +6,8 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-import { addBoard } from '../helpers/data/boardsData';
+import { useHistory } from 'react-router-dom';
+import { addBoard, updateBoard } from '../helpers/data/boardsData';
 
 function AddBoardForm({
   user, setBoards, formTitle, ...boardInfo
@@ -19,6 +20,8 @@ function AddBoardForm({
     id: boardInfo?.id || null
   });
 
+  const history = useHistory();
+
   const handleInputChange = (e) => {
     setBoard((prevState) => ({
       ...prevState,
@@ -28,7 +31,14 @@ function AddBoardForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBoard(board, user).then(setBoards);
+    if (board.firebaseKey) {
+      updateBoard(board).then((boardArray) => setBoards(boardArray));
+    } else {
+      addBoard(board).then((response) => {
+        setBoards(response);
+        history.push('/boards');
+      });
+    }
   };
 
   return (
