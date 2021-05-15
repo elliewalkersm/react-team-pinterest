@@ -1,6 +1,6 @@
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
-import getBoardPins from './board_pinsData';
+import { getBoardPins } from './board_pinsData';
 
 const dbUrl = firebaseConfig.databaseURL;
 
@@ -15,13 +15,6 @@ const getSinglePin = (firebaseKey) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
-
-const deletePin = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.delete(`${dbUrl}/pins/${firebaseKey}.json`)
-    .then(() => getPins().then((pinArray) => resolve(pinArray)))
-    .catch((error) => reject(error));
-});
-
 const mergePinsData = () => new Promise((resolve, reject) => {
   Promise.all([getPins(), getBoardPins()])
     .then(([groups, userGroupsJoin]) => {
@@ -47,7 +40,6 @@ const addPin = (board, uid) => new Promise((resolve, reject) => {
 export {
   getPins,
   getSinglePin,
-  deletePin,
   mergePinsData,
   addPin
 };
