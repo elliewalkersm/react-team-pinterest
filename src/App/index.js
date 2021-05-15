@@ -20,14 +20,12 @@ function App() {
           username: authed.email.split('@gmail.com')[0],
           uid: authed.uid
         };
+        getBoards(authed.uid).then((response) => setBoards(response));
         setUser(userInfo);
       } else if (user || user === null) {
         setUser(false);
       }
     });
-  }, []);
-  useEffect(() => {
-    getBoards(user?.uid).then((response) => setBoards(response));
   }, []);
   return (
     <div className='App'>

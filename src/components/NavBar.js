@@ -22,7 +22,7 @@ const NavBar = ({ user }) => {
     <div>
       <Navbar color="light" light expand="xl" sticky="top">
         <NavbarBrand href="/"><img src={pinterestBadge} alt="Logo" className="logo" />
-      </NavbarBrand>
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
@@ -36,14 +36,14 @@ const NavBar = ({ user }) => {
               <Link className="nav-link" to="/add-boards">Add Board</Link>
             </NavItem>
           </Nav>
-          { user !== null
+          {user !== null
             && <div className='auth-btn-container'>
-                {
-                  user ? <Button color='danger' onClick={signOutUser}>SignOut?</Button>
-                    : <Button color='info' onClick={signInUser}>SignIN!</Button>
-                }
-              </div>
-            }
+              {
+                user ? <Button color='danger' onClick={signOutUser}>SignOut?</Button>
+                  : <Button color='info' onClick={signInUser}>SignIN!</Button>
+              }
+            </div>
+          }
         </Collapse>
       </Navbar>
     </div>

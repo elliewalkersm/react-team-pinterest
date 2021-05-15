@@ -18,12 +18,12 @@ const BoardCard = ({
 
   return (
   <>
-    <Card>
+    <Card className="board-card">
       <CardBody>
-        <CardTitle tag="h5">{boardInfo.title}</CardTitle>
+        <CardTitle img-fluid tag="h5">{boardInfo.title}</CardTitle>
         <CardImg top width="100%" src={boardInfo.imageUrl} alt="Card image cap" />
         <CardText>{boardInfo.description}</CardText>
-        <Button color="danger" onClick={viewPins}>Link</Button>
+        <Button color="secondary" size="sm" onClick={viewPins}>See Pins</Button>
       </CardBody>
     </Card>
   </>

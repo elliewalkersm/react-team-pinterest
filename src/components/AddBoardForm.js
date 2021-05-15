@@ -33,7 +33,7 @@ function AddBoardForm({
 
   return (
     <div>
-      <Form className='board-form-container'
+      <Form className='board-input-form'
       autoComplete='off'
       onSubmit={handleSubmit}
       >
