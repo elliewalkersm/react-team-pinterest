@@ -25,8 +25,8 @@ const mergePinsData = () => new Promise((resolve, reject) => {
 });
 
 // ADD PIN
-const addPin = (board) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/pins.json`, board)
+const addPin = (pinObject) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/pins.json`, pinObject)
     .then((response) => {
       const body = { id: response.data.name };
       axios.patch(`${dbUrl}/pins/${response.data.name}.json`, body)

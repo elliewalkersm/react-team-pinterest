@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 import { addPin } from '../helpers/data/pinsData';
 import { createBoardPin } from '../helpers/data/board_pinsData';
+// import { createBoardPin } from '../helpers/data/board_pinsData';
 
 function AddPinForm({
   user, formTitle, boards, setBoards, ...pinInfo
@@ -20,10 +21,8 @@ function AddPinForm({
     uid: user.uid,
     id: pinInfo?.id || null
   });
-  const [boardPinRelationship, setBoardPinRelationship] = useState({
-    pinId: pinInfo?.id,
-    boardId: ''
-  });
+  const [boardPinRelationship, setBoardPinRelationship] = useState({});
+  console.warn(boardPinRelationship);
 
   const handleInputChange = (e) => {
     setPin((prevState) => ({
@@ -35,18 +34,17 @@ function AddPinForm({
   const handleSelectChange = (e) => {
     setBoardPinRelationship((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value
+      boardId: e.target.value,
+      pinId: ''
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addPin(pin).then((response) => {
-      setBoardPinRelationship((prevState) => ({
-        boardId: prevState.boardId,
-        pinId: response
-      }));
-    }).then(() => createBoardPin(boardPinRelationship));
+      const getboardId = boardPinRelationship.boardId;
+      createBoardPin(getboardId, response);
+    });
   };
 
   return (
