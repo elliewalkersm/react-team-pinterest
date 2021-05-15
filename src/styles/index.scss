@@ -2,8 +2,7 @@
 @import 'variables';
 
 #root {
-  color: green;
-  background-color: black;
+  color: black;
 }
 body {
   height: 100vh;
@@ -13,4 +12,34 @@ body {
 .board-form-container {
   margin: auto;
   width: 50%;
+}
+
+// CARDS
+.pin-card {
+  width: 18em;
+  margin: 1em;
+}
+
+.board-card {
+  width: 18em;
+  margin: 1em;  
+  border-radius: 1em;
+}
+
+// BOARDS 
+.board-card {
+  width: 20em;
+  margin: 1em;  
+  border-radius: 1em;
+}
+
+.board-form {
+  width: 20em;
+  margin: 1em;  
+  border-radius: 1em;
+}
+
+// NAV
+.logo {
+  width: 2em;
 }
