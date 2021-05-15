@@ -12,7 +12,6 @@ import { createBoardPin } from '../helpers/data/board_pinsData';
 function AddPinForm({
   user, formTitle, boards, setBoards, ...pinInfo
 }) {
-  console.warn(boards);
   const [pin, setPin] = useState({
     title: pinInfo?.title || '',
     imageUrl: pinInfo?.imageUrl || '',
