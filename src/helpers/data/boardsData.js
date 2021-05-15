@@ -56,9 +56,9 @@ const getSinglePinBoardRelationship = (pinId, boardId) => new Promise((resolve, 
 });
 
 // UPDATE BOARD
-const updateBoard = (boards) => new Promise((resolve, reject) => {
+const updateBoard = (boards, uid) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/boards/${boards.id}.json`, boards)
-    .then(() => getBoards().then(resolve))
+    .then(() => getBoards(uid).then(resolve))
     .catch((error) => reject(error));
 });
 

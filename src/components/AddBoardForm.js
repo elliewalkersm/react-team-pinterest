@@ -32,7 +32,7 @@ function AddBoardForm({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (board.id) {
-      updateBoard(board).then((boardsArray) => {
+      updateBoard(board, user.uid).then((boardsArray) => {
         setBoards(boardsArray);
         history.push('/boards');
       });
