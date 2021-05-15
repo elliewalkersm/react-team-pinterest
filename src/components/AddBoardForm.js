@@ -28,7 +28,7 @@ function AddBoardForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBoard(board, user).then(setBoards);
+    addBoard(board, user.uid).then(setBoards);
   };
 
   return (

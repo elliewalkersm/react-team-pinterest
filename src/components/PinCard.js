@@ -7,15 +7,20 @@ import {
   CardImg,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { deletePin } from '../helpers/data/pinsData';
+import { deletePin, getSinglePinBoardRelationship } from '../helpers/data/boardsData';
+import { deletePinBoardRelationship } from '../helpers/data/board_pinsData';
 
-const PinCard = ({ setBoardPins, ...object }) => {
+const PinCard = ({ setBoardPins, boardId, ...object }) => {
   const [editing, setEditing] = useState(false);
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deletePin(object.id)
-          .then(setBoardPins);
+        deletePin(object.id, boardId)
+          .then((response) => setBoardPins(response[1]));
+        getSinglePinBoardRelationship(object.id, boardId).then((response) => {
+          const relationshipId = response[0].id;
+          deletePinBoardRelationship(relationshipId);
+        });
         break;
       case 'edit':
         setEditing((prevState) => !prevState);
@@ -41,7 +46,8 @@ const PinCard = ({ setBoardPins, ...object }) => {
 };
 
 PinCard.propTypes = {
-  setBoardPins: PropTypes.func
+  setBoardPins: PropTypes.func,
+  boardId: PropTypes.string,
 };
 
 export default PinCard;
