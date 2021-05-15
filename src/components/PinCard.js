@@ -29,7 +29,7 @@ const PinCard = ({ setBoardPins, boardId, ...object }) => {
     }
   };
   return (
-    <Card>
+    <Card className="pin-card">
       <CardImg className="card-img" top width="100%" src={object.imageUrl} />
       <CardTitle tag="h5">{object.title}</CardTitle>
       <CardText>{object.description}</CardText>
