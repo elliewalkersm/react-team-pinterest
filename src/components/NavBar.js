@@ -39,8 +39,8 @@ const NavBar = ({ user }) => {
           {user !== null
             && <div className='auth-btn-container'>
               {
-                user ? <Button color='danger' onClick={signOutUser}>SignOut?</Button>
-                  : <Button color='info' onClick={signInUser}>SignIN!</Button>
+                user ? <Button color='danger' size="sm" onClick={signOutUser}>Sign Out</Button>
+                  : <Button color='info' onClick={signInUser}>Sign In</Button>
               }
             </div>
           }

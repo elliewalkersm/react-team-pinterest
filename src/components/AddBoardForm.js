@@ -32,7 +32,7 @@ function AddBoardForm({
   };
 
   return (
-    <div>
+    <div className="board-form-container">
       <Form className='board-input-form'
       autoComplete='off'
       onSubmit={handleSubmit}
@@ -64,7 +64,7 @@ function AddBoardForm({
           value={board.description}
           onChange={handleInputChange}>
         </Input>
-        <Button color='success' type='submit'>Submit</Button>
+        <Button color='success' size="sm" type='submit'>Submit</Button>
       </Form>
     </div>
   );

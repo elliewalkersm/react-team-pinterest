@@ -4,26 +4,11 @@
 #root {
   color: black;
 }
-body {
-  height: 100vh;
-  background-color: $favColor !important;
-}
 
-.board-form-container {
-  margin: auto;
-  width: 50%;
-}
-
-// CARDS
+// PINS
 .pin-card {
   width: 18em;
   margin: 1em;
-}
-
-.board-card {
-  width: 18em;
-  margin: 1em;  
-  border-radius: 1em;
 }
 
 // BOARDS 
