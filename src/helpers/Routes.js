@@ -2,22 +2,28 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from '../views/Home';
-import About from '../views/About';
-import Users from '../views/Users';
+import Boards from '../views/Boards';
+import PrivateRoute from './PrivateRoute';
+import SingleBoard from '../views/SingleBoard';
+import BoardForm from '../views/BoardForm';
 
-function Routes({ user, time }) {
+function Routes({
+  user, boards, setBoards
+}) {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={() => <Home user={user} time={time}/>} />
-        <Route exact path="/about" component={() => <About user={user} />} />
-        <Route exact path="/users" component={() => <Users user={user} />} />
+        <Route exact path="/" component={() => <Home user={user}/>} />
+        <PrivateRoute exact path="/boards" component={() => <Boards user={user} boards={boards} setBoards={setBoards}/>} user={user}/>
+        <PrivateRoute exact path="/boards/:id" component={() => <SingleBoard user={user} />} user={user}/>
+        <PrivateRoute exact path="/add-boards" component={() => <BoardForm user={user} setBoards={setBoards}/>} user={user}/>
       </Switch>
     </div>
   );
 }
 Routes.propTypes = {
   user: PropTypes.any,
-  time: PropTypes.string,
+  boards: PropTypes.array,
+  setBoards: PropTypes.func,
 };
 export default Routes;

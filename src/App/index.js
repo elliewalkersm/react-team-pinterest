@@ -5,10 +5,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './App.scss';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
+import { getBoards } from '../helpers/data/boardsData';
 
 function App() {
   // When you set up firebase add setUser method and change useState to null.
   const [user, setUser] = useState(null);
+  const [boards, setBoards] = useState([]);
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
       if (authed) {
@@ -17,6 +20,7 @@ function App() {
           username: authed.email.split('@gmail.com')[0],
           uid: authed.uid
         };
+        getBoards(authed.uid).then((response) => setBoards(response));
         setUser(userInfo);
       } else if (user || user === null) {
         setUser(false);
@@ -27,7 +31,7 @@ function App() {
     <div className='App'>
      <Router>
         <NavBar user={user}/>
-        <Routes />
+        <Routes user={user} boards={boards} setBoards={setBoards}/>
       </Router>
     </div>
   );

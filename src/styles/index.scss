@@ -2,10 +2,15 @@
 @import 'variables';
 
 #root {
-  color: white;
+  color: green;
   background-color: black;
 }
 body {
   height: 100vh;
   background-color: $favColor !important;
+}
+
+.board-form-container {
+  margin: auto;
+  width: 50%;
 }
