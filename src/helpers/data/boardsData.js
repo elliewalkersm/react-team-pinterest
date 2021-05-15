@@ -16,6 +16,8 @@ const getSingleBoard = (id) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
+
+// GET SINGLE BOARD'S PINS
 const getSingleBoardPins = (boardId) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/board_pins.json?orderBy="boardId"&equalTo="${boardId}"`)
     .then((response) => {
@@ -39,8 +41,8 @@ const addBoard = (board, uid) => new Promise((resolve, reject) => {
 });
 
 // UPDATE BOARD
-const updateBoard = (board) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/boards/${board.firebaseKey}.json`, board)
+const updateBoard = (boards) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/boards/${boards.firebaseKey}.json`, boards)
     .then(() => getBoards().then(resolve))
     .catch((error) => reject(error));
 });

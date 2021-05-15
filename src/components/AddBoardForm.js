@@ -32,7 +32,10 @@ function AddBoardForm({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (board.firebaseKey) {
-      updateBoard(board).then((boardArray) => setBoards(boardArray));
+      updateBoard(board).then((boardsArray) => {
+        setBoards(boardsArray);
+        history.push('/boards');
+      });
     } else {
       addBoard(board).then((response) => {
         setBoards(response);
@@ -82,7 +85,7 @@ function AddBoardForm({
 
 AddBoardForm.propTypes = {
   user: PropTypes.any,
-  formTitle: PropTypes.string,
+  formTitle: PropTypes.string.isRequired,
   boardInfo: PropTypes.object,
   setBoards: PropTypes.func,
 };
