@@ -6,6 +6,7 @@ import {
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AddBoardForm from './AddBoardForm';
+import { deleteBoard } from '../helpers/data/boardsData';
 
 const BoardCard = ({
   uid,
@@ -19,7 +20,7 @@ const BoardCard = ({
         setEditing((prevState) => !prevState);
         break;
       case 'delete':
-        console.warn('you clicked delete');
+        deleteBoard(boardInfo.id, uid).then((response) => setBoards(response));
         break;
       default:
         console.warn('Nothing Selected');
@@ -35,7 +36,7 @@ const BoardCard = ({
   return (
   <>
     <Card body>
-      <CardTitle tag="h5">{boardInfo.title}</CardTitle>
+      <CardTitle img-fluid="true" tag="h5">{boardInfo.title}</CardTitle>
       <CardImg top width="100%" src={boardInfo.imageUrl} alt="Card image cap" />
       <CardText>{boardInfo.description}</CardText>
       <Button color="dark" onClick={viewPins}>Link</Button>

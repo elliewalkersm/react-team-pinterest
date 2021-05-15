@@ -1,6 +1,6 @@
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
-import getBoardPins from './board_pinsData';
+import { getBoardPins } from './board_pinsData';
 
 const dbUrl = firebaseConfig.databaseURL;
 

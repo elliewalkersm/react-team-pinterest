@@ -2,6 +2,7 @@ import 'firebase/auth';
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
 import { getSinglePin } from './pinsData';
+import { deletePinBoardRelationship } from './board_pinsData';
 
 const dbUrl = firebaseConfig.databaseURL;
 // GET BOARDS
@@ -47,7 +48,21 @@ const updateBoard = (boards) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const deleteBoardRelationships = (boardId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/board_pins.json?orderBy="boardId"&equalTo="${boardId}"`)
+    .then((response) => {
+      const deleteArray = Object.values(response.data).map((object) => object.id);
+      Promise.all(deleteArray.map((element) => deletePinBoardRelationship(element)));
+    })
+    .catch((error) => reject(error));
+});
+const deleteBoard = (boardId, uid) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/boards/${boardId}.json`)
+    .then(() => getBoards(uid).then((response) => resolve(response)).then(() => deleteBoardRelationships(boardId)))
+    .catch((error) => reject(error));
+});
+
 export {
   getBoards, getSingleBoard, addBoard, getSingleBoardPins,
-  updateBoard
+  updateBoard, deleteBoardRelationships, deleteBoard
 };
