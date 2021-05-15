@@ -5,9 +5,11 @@ import {
 } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { deleteBoard } from '../helpers/data/boardsData';
 
 const BoardCard = ({
   uid,
+  setBoards,
   ...boardInfo
 }) => {
   const history = useHistory();
@@ -22,7 +24,7 @@ const BoardCard = ({
         setEditing((prevState) => !prevState);
         break;
       case 'delete':
-        console.warn('you clicked delete');
+        deleteBoard(boardInfo.id, uid).then((response) => setBoards(response));
         break;
       default:
     }
@@ -45,6 +47,7 @@ const BoardCard = ({
 
 BoardCard.propTypes = {
   boardInfo: PropTypes.object,
+  setBoards: PropTypes.func,
   uid: PropTypes.any,
 };
 
