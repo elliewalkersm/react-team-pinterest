@@ -31,7 +31,7 @@ function AddBoardForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (board.firebaseKey) {
+    if (board.id) {
       updateBoard(board).then((boardsArray) => {
         setBoards(boardsArray);
         history.push('/boards');
