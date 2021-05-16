@@ -5,7 +5,7 @@ import PinCard from '../components/PinCard';
 function Pins({ pins, setPins }) {
   return (
     <>
-      <div className="pin-card-container">
+      <div className="pin-card">
         {pins.map((pinInfo) => (
           <PinCard
             key={pinInfo.id}

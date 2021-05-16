@@ -38,7 +38,7 @@ const BoardCard = ({
     <CardBody>
       <CardImg top width="100%" src={boardInfo.imageUrl} alt="Card image cap" />
       <CardTitle img-fluid="true" tag="h5">{boardInfo.title}</CardTitle>
-      <Button board-btn color="light" size="sm" onClick={viewPins}><i className="far fa-eye"></i></Button>
+      <Button board-btn color="light" size="sm" onClick={viewPins}>View Pins</Button>
       <Button board-btn color="light" size="sm" onClick={() => handleClick('delete')}><i className="fas fa-trash"></i></Button>
       <Button board-btn color="light" size="sm" onClick={() => handleClick('edit')}>
         { editing ? 'Close Form' : 'Edit Board'}

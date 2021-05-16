@@ -1,6 +1,7 @@
-.pin-card-container {
-  width: 18em;
-  margin: 2em;
+.pin-card {  // from Pins.js
+  width: 16em;
+  margin: 1em;  
+  border-radius: 2em;
 }
 
 .card-body {

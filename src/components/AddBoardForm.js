@@ -45,13 +45,13 @@ function AddBoardForm({
   };
 
   return (
-    <div className="board-form-container">
+    <div className="board-form-container mt-5">
       <Form className='board-input-form'
       autoComplete='off'
       onSubmit={handleSubmit}
       >
         <h2>{formTitle}</h2>
-        <Label>Board Title</Label>
+        <Label></Label>
         <Input
           name='title'
           type='text'
@@ -60,7 +60,7 @@ function AddBoardForm({
           onChange={handleInputChange}
         >
         </Input>
-        <Label>Image</Label>
+        <Label></Label>
         <Input
           name='imageUrl'
           type='text'
@@ -69,7 +69,7 @@ function AddBoardForm({
           onChange={handleInputChange}
         >
         </Input>
-        <Label>Description</Label>
+        <Label></Label>
         <Input
           name='description'
           type='textarea'
@@ -77,7 +77,7 @@ function AddBoardForm({
           value={board.description}
           onChange={handleInputChange}>
         </Input>
-        <Button color='success' size="sm" type='submit'>Submit</Button>
+        <Button className="board-form-submit-btn mt-4"color='success' size="sm" type='submit'>Submit</Button>
       </Form>
     </div>
   );
