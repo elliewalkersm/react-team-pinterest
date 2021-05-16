@@ -6,7 +6,8 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-import { addBoard } from '../helpers/data/boardsData';
+import { useHistory } from 'react-router-dom';
+import { addBoard, updateBoard } from '../helpers/data/boardsData';
 
 function AddBoardForm({
   user, setBoards, formTitle, ...boardInfo
@@ -19,6 +20,8 @@ function AddBoardForm({
     id: boardInfo?.id || null
   });
 
+  const history = useHistory();
+
   const handleInputChange = (e) => {
     setBoard((prevState) => ({
       ...prevState,
@@ -28,7 +31,17 @@ function AddBoardForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBoard(board, user.uid).then(setBoards);
+    if (board.id) {
+      updateBoard(board, user.uid).then((boardsArray) => {
+        setBoards(boardsArray);
+        history.push('/boards');
+      });
+    } else {
+      addBoard(board).then((response) => {
+        setBoards(response);
+        history.push('/boards');
+      });
+    }
   };
 
   return (
@@ -72,7 +85,7 @@ function AddBoardForm({
 
 AddBoardForm.propTypes = {
   user: PropTypes.any,
-  formTitle: PropTypes.string,
+  formTitle: PropTypes.string.isRequired,
   boardInfo: PropTypes.object,
   setBoards: PropTypes.func,
 };
