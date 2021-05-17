@@ -93,7 +93,7 @@ function AddPinForm({
           name='boardId'
           value={boards.title}
           onChange={handleSelectChange}
-        >
+        > <option hidden value=''>Select</option>
           {boards.map((board) => <option
             key={board.id}
             value={board.id}

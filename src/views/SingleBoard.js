@@ -20,7 +20,6 @@ function SingleBoard() {
       if (isMounted.current) {
         setBoard(response[0]);
         setBoardPins(response[1]);
-        console.warn(response);
       }
       isMounted.current = true;
     });
