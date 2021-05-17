@@ -24,10 +24,10 @@ const NavBar = ({ user }) => {
       <Navbar color="light" light expand="xl" sticky="top">
         <Nav className="mr-auto" navbar>
           <NavbarBrand href="/"><img src={pinterestBadge} alt="Logo" className="logo" /></NavbarBrand>
-          <NavItem><Link className="nav-link" href="https://www.pinterest.com/">Home</Link></NavItem>
+          <NavItem><a className="nav-link" href="https://www.pinterest.com/">Home</a></NavItem>
           <NavItem><Link className="nav-link" href="#">Favorites</Link></NavItem>
         </Nav>
-        <Input fluid className="search-bar-input-container ml-2 mr-2" type="text" size="sm" placeholder="search" />
+        <Input fluid="true" className="search-bar-input-container ml-2 mr-2" type="text" size="sm" placeholder="search" />
         <NavbarToggler onClick={toggle} /><Collapse isOpen={isOpen} navbar>
 
           <Nav className="mr-auto" navbar>
