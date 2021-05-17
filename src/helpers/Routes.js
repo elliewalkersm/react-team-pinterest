@@ -11,7 +11,7 @@ function Routes({
   user, boards, setBoards
 }) {
   return (
-    <div>
+    <div className='content-containter'>
       <Switch>
         <Route exact path="/" component={() => <Home user={user}/>} />
         <PrivateRoute exact path="/boards" component={() => <Boards user={user} boards={boards} setBoards={setBoards}/>} user={user}/>
