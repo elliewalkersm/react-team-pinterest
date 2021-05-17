@@ -14,4 +14,14 @@ const deletePinBoardRelationship = (id) => new Promise((resolve, reject) => {
     .then(resolve)
     .catch((error) => reject(error));
 });
-export { deletePinBoardRelationship, getBoardPins };
+
+const createBoardPin = (boardId, pinId) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/board_pins.json`, { boardId, pinId })
+    .then((response) => {
+      const body = { id: response.data.name };
+      axios.patch(`${dbUrl}/board_pins/${response.data.name}.json`, body)
+        .then((resp) => resolve(resp));
+    })
+    .catch((error) => reject(error));
+});
+export { deletePinBoardRelationship, getBoardPins, createBoardPin };
