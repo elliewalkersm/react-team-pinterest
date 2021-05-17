@@ -29,7 +29,7 @@ function SingleBoard() {
       <header>
         { board === null ? 'Loading...' : <h1>{board.title}</h1>}
       </header>
-      <div className='content'>
+      <div className='d-flex flex-column'>
         { boardPins.includes(null) || boardPins.length <= 0 ? 'No pins to show' : boardPins.map((object) => <PinCard
           key={object.id}
           {...object}

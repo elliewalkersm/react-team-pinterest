@@ -37,7 +37,7 @@ function AddBoardForm({
         history.push('/boards');
       });
     } else {
-      addBoard(board).then((response) => {
+      addBoard(board, user.uid).then((response) => {
         setBoards(response);
         history.push('/boards');
       });
@@ -45,7 +45,7 @@ function AddBoardForm({
   };
 
   return (
-    <div className="board-form-container mt-5">
+    <div className="board-form-container mt-5 d-flex justify-content-center">
       <Form className='board-input-form'
       autoComplete='off'
       onSubmit={handleSubmit}
