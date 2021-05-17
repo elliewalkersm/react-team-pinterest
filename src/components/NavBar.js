@@ -20,7 +20,7 @@ const NavBar = ({ user }) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <div className="navbar-container">
       <Navbar color="light" light expand="xl" sticky="top">
         <NavbarBrand href="/"><img src={pinterestBadge} alt="Logo" className="logo" /></NavbarBrand>
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
