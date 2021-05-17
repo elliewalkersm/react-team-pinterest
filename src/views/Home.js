@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 function Home() {
   return (
-    <>
-      <h1>View Public Pins Here</h1>
-    </>
+    <div className="home-content-container">
+      <h3>Public Pins</h3>
+    </div>
   );
 }
 Home.propTypes = {

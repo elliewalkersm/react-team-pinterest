@@ -9,6 +9,7 @@ import {
   Nav,
   NavItem,
   Button,
+  Input
 } from 'reactstrap';
 import pinterestBadge from '../styles/assets/pinterestBadge.webp';
 import { signInUser, signOutUser } from '../helpers/auth';
@@ -19,30 +20,27 @@ const NavBar = ({ user }) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <div className="navbar-container">
       <Navbar color="light" light expand="xl" sticky="top">
-        <NavbarBrand href="/"><img src={pinterestBadge} alt="Logo" className="logo" />
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem>
-              <Link className="nav-link" to="/boards">Boards</Link>
-            </NavItem>
-            <NavItem>
-              <Link className="nav-link" to="/add-pins">Add Pin</Link>
-            </NavItem>
-            <NavItem>
-              <Link className="nav-link" to="/add-boards">Add Board</Link>
-            </NavItem>
+        <Nav className="mr-auto" navbar>
+          <NavbarBrand href="/"><img src={pinterestBadge} alt="Logo" className="logo" /></NavbarBrand>
+          <NavItem><a className="nav-link" href="https://www.pinterest.com/">Home</a></NavItem>
+          <NavItem><Link className="nav-link" href="#">Favorites</Link></NavItem>
+        </Nav>
+        <Input fluid="true" className="search-bar-input-container ml-2 mr-2" type="text" size="sm" placeholder="search" />
+        <NavbarToggler onClick={toggle} /><Collapse isOpen={isOpen} navbar>
+
+          <Nav className="mr-auto" navbar>
+            <NavItem><Link className="nav-link" to="/boards">Boards</Link></NavItem>
+            <NavItem><Link className="nav-link" to="/add-pins">Pins</Link></NavItem>
+            <NavItem><Link className="nav-link" to="/add-boards">Board</Link></NavItem>
           </Nav>
-          {user !== null
-            && <div className='auth-btn-container'>
-              {
-                user ? <Button color='danger' onClick={signOutUser}>SignOut?</Button>
-                  : <Button color='info' onClick={signInUser}>SignIN!</Button>
-              }
-            </div>
+
+          {user !== null && <div className='auth-btn-container'>
+            {user ? <Button className="signOut-btn ml-3" color='danger' size="sm" onClick={signOutUser}>Sign Out</Button>
+              : <Button className="sign-in-btn ml-3" color='danger' size="sm" onClick={signInUser}>Sign In</Button>
+            }
+          </div>
           }
         </Collapse>
       </Navbar>
