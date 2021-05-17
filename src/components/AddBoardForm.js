@@ -45,7 +45,7 @@ function AddBoardForm({
   };
 
   return (
-    <div className="board-form-container mt-5">
+    <div className="board-form-container mt-5 d-flex justify-content-center">
       <Form className='board-input-form'
       autoComplete='off'
       onSubmit={handleSubmit}
