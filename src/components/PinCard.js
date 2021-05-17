@@ -7,20 +7,23 @@ import {
   CardImg,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { deletePin, getSinglePinBoardRelationship } from '../helpers/data/boardsData';
+import { deletePin, getSingleBoardPins, getSinglePinBoardRelationship } from '../helpers/data/boardsData';
 import { deletePinBoardRelationship } from '../helpers/data/board_pinsData';
+import { getPinRelationships } from '../helpers/data/pinsData';
 
 const PinCard = ({ setBoardPins, boardId, ...object }) => {
   const [editing, setEditing] = useState(false);
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deletePin(object.id, boardId)
-          .then((response) => setBoardPins(response[1]));
         getSinglePinBoardRelationship(object.id, boardId).then((response) => {
           const relationshipId = response[0].id;
-          deletePinBoardRelationship(relationshipId);
-        });
+          deletePinBoardRelationship(relationshipId).then(() => getSingleBoardPins(boardId).then(setBoardPins));
+        }).then(() => getPinRelationships(object.id).then((response) => {
+          if (response.length <= 1) {
+            deletePin(object.id, boardId).then((pins) => setBoardPins(pins[1]));
+          }
+        }));
         break;
       case 'edit':
         setEditing((prevState) => !prevState);

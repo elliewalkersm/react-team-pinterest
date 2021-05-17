@@ -37,7 +37,7 @@ function AddBoardForm({
         history.push('/boards');
       });
     } else {
-      addBoard(board).then((response) => {
+      addBoard(board, user.uid).then((response) => {
         setBoards(response);
         history.push('/boards');
       });
