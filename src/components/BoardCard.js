@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
-  CardImg, CardText, CardBody,
-  CardTitle, Button
+  CardImg, CardBody,
+  CardTitle, Button, Card
 } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -34,14 +34,13 @@ const BoardCard = ({
   };
 
   return (
-  <>
+    <Card className="board-card">
     <CardBody>
-      <CardTitle img-fluid="true" tag="h5">{boardInfo.title}</CardTitle>
       <CardImg top width="100%" src={boardInfo.imageUrl} alt="Card image cap" />
-      <CardText>{boardInfo.description}</CardText>
-      <Button color="dark" onClick={viewPins}>Link</Button>
-      <Button color="danger" onClick={() => handleClick('delete')}>Delete</Button>
-      <Button color="primary" onClick={() => handleClick('edit')}>
+      <CardTitle img-fluid="true" tag="h5">{boardInfo.title}</CardTitle>
+      <Button board-btn color="light" size="sm" onClick={viewPins}>View Pins</Button>
+      <Button board-btn color="light" size="sm" onClick={() => handleClick('delete')}><i className="fas fa-trash"></i></Button>
+      <Button board-btn color="light" size="sm" onClick={() => handleClick('edit')}>
         { editing ? 'Close Form' : 'Edit Board'}
       </Button>
       {
@@ -52,7 +51,7 @@ const BoardCard = ({
         />
       }
     </CardBody>
-  </>
+    </Card>
   );
 };
 

@@ -4,7 +4,7 @@ import BoardCard from '../components/BoardCard';
 
 function Boards({ user, setBoards, boards }) {
   return (
-    <>
+    <div className="board-card-container">
       <div className="board-card">
         {boards.map((boardInfo) => (
           <BoardCard
@@ -15,7 +15,7 @@ function Boards({ user, setBoards, boards }) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

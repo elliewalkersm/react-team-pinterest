@@ -37,8 +37,8 @@ const PinCard = ({ setBoardPins, boardId, ...object }) => {
       <CardTitle tag="h5">{object.title}</CardTitle>
       <CardText>{object.description}</CardText>
       <a href={object.articleLink}>Article</a>
-      <Button color="danger" onClick={() => handleClick('delete')}>Delete Pin</Button>
-      <Button color="info" onClick={() => handleClick('edit')}>
+      <Button color="danger" size="sm" onClick={() => handleClick('delete')}>Delete Pin</Button>
+      <Button color="info" size="sm" onClick={() => handleClick('edit')}>
         {editing ? 'Close Form' : 'Edit Pin'}
       </Button>
       {
