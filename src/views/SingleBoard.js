@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import PinCard from '../components/PinCard';
 import { mergeBoardPinsData } from '../helpers/data/boardsData';
 
-function SingleBoard() {
+function SingleBoard({ boards, user }) {
   const [board, setBoard] = useState({});
   const [boardPins, setBoardPins] = useState([]);
   const isMounted = useRef(false);
@@ -34,11 +35,18 @@ function SingleBoard() {
           key={object.id}
           {...object}
           boardId={id}
+          boards={boards}
+          user={user}
           setBoardPins={setBoardPins} />)
         }
       </div>
     </div>
   );
 }
+
+SingleBoard.propTypes = {
+  boards: PropTypes.string,
+  user: PropTypes.any
+};
 
 export default SingleBoard;
