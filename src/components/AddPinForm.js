@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Button,
@@ -7,6 +8,7 @@ import {
   Input,
 } from 'reactstrap';
 import { addPin } from '../helpers/data/pinsData';
+import { updatePin } from '../helpers/data/boardsData';
 import { createBoardPin } from '../helpers/data/board_pinsData';
 // import { createBoardPin } from '../helpers/data/board_pinsData';
 
@@ -18,11 +20,13 @@ function AddPinForm({
     imageUrl: pinInfo?.imageUrl || '',
     description: pinInfo?.description || '',
     articleLink: pinInfo?.articleLink || '',
-    uid: user.uid,
+    uid: user?.uid,
     id: pinInfo?.id || null
   });
   const [boardPinRelationship, setBoardPinRelationship] = useState({});
   console.warn(boardPinRelationship);
+
+  const history = useHistory();
 
   const handleInputChange = (e) => {
     setPin((prevState) => ({
@@ -41,10 +45,19 @@ function AddPinForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addPin(pin).then((response) => {
-      const getboardId = boardPinRelationship.boardId;
-      createBoardPin(getboardId, response);
-    });
+    if (pin.id) {
+      updatePin(pin, user.uid).then((pinsArray) => {
+        createBoardPin(boardPinRelationship.boardId, pin.id);
+        setPin(pinsArray);
+        history.push('/boards');
+      });
+    } else {
+      addPin(pin).then((response) => {
+        const getboardId = boardPinRelationship.boardId;
+        createBoardPin(getboardId, response);
+        history.push('/boards');
+      });
+    }
   };
 
   return (
@@ -91,11 +104,11 @@ function AddPinForm({
         <Label>Assign to a Board</Label>
         <Input type='select'
           name='boardId'
-          value={boards.title}
+          // value={boards.title}
           onChange={handleSelectChange}
         >
           <option hidden value=''>Select a Board</option>
-          {boards.map((board) => <option
+          {boards.length && boards.map((board) => <option
             key={board.id}
             value={board.id}
           >

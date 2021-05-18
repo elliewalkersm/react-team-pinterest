@@ -10,8 +10,15 @@ import PropTypes from 'prop-types';
 import { deletePin, getSingleBoardPins, getSinglePinBoardRelationship } from '../helpers/data/boardsData';
 import { deletePinBoardRelationship } from '../helpers/data/board_pinsData';
 import { getPinRelationships } from '../helpers/data/pinsData';
+import AddPinForm from './AddPinForm';
 
-const PinCard = ({ setBoardPins, boardId, ...object }) => {
+const PinCard = ({
+  setBoardPins,
+  boardId,
+  boards,
+  user,
+  ...object
+}) => {
   const [editing, setEditing] = useState(false);
   const handleClick = (type) => {
     switch (type) {
@@ -38,11 +45,17 @@ const PinCard = ({ setBoardPins, boardId, ...object }) => {
       <CardText>{object.description}</CardText>
       <a href={object.articleLink}>Article</a>
       <Button color="danger" size="sm" onClick={() => handleClick('delete')}>Delete Pin</Button>
-      <Button color="info" size="sm" onClick={() => handleClick('edit')}>
-        {editing ? 'Close Form' : 'Edit Pin'}
+      <Button board-btn color="light" size="sm" onClick={() => handleClick('edit')}>
+        { editing ? 'Close Form' : 'Edit Pin'}
       </Button>
       {
-        editing && <p>editing is true</p>
+        editing && <AddPinForm
+          formTitle='Edit Pin'
+          {...object}
+          setBoardPins={setBoardPins}
+          boards={boards}
+          user={user}
+        />
       }
     </Card>
   );
@@ -51,6 +64,8 @@ const PinCard = ({ setBoardPins, boardId, ...object }) => {
 PinCard.propTypes = {
   setBoardPins: PropTypes.func,
   boardId: PropTypes.string,
+  boards: PropTypes.string,
+  user: PropTypes.any
 };
 
 export default PinCard;

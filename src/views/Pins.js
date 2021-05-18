@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PinCard from '../components/PinCard';
 
-function Pins({ pins, setPins }) {
+function Pins({ pins, setPins, user }) {
   return (
     <div className="pin-card-container">
       <div className="pin-card">
@@ -11,6 +11,7 @@ function Pins({ pins, setPins }) {
             key={pinInfo.id}
             {...pinInfo}
             setPins={setPins}
+            user={user}
           />
         ))}
       </div>
