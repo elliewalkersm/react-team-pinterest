@@ -114,7 +114,12 @@ function AddPinForm({
             {board.title}
           </option>)}
         </Input>
-        <Label check><Input type='checkbox' />
+        <Label check>
+          <Input
+            name='public'
+            type='checkbox'
+            value={Boolean}
+          />
           Public Pin
         </Label><br />
         <Button color='success' type='submit'>Submit</Button>
