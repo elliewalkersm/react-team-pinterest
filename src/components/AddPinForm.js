@@ -10,7 +10,6 @@ import {
 import { addPin } from '../helpers/data/pinsData';
 import { updatePin } from '../helpers/data/boardsData';
 import { createBoardPin } from '../helpers/data/board_pinsData';
-// import { createBoardPin } from '../helpers/data/board_pinsData';
 
 function AddPinForm({
   user, formTitle, boards, setBoards, ...pinInfo
@@ -24,8 +23,6 @@ function AddPinForm({
     id: pinInfo?.id || null
   });
   const [boardPinRelationship, setBoardPinRelationship] = useState({});
-  console.warn(boardPinRelationship);
-
   const history = useHistory();
 
   const handleInputChange = (e) => {

@@ -13,6 +13,7 @@ import { getPinRelationships } from '../helpers/data/pinsData';
 import AddPinForm from './AddPinForm';
 
 const PinCard = ({
+  isPublic,
   setBoardPins,
   boardId,
   boards,
@@ -44,10 +45,12 @@ const PinCard = ({
       <CardTitle tag="h5">{object.title}</CardTitle>
       <CardText>{object.description}</CardText>
       <a href={object.articleLink}>Article</a>
-      <Button color="danger" size="sm" onClick={() => handleClick('delete')}>Delete Pin</Button>
-      <Button board-btn color="light" size="sm" onClick={() => handleClick('edit')}>
-        { editing ? 'Close Form' : 'Edit Pin'}
-      </Button>
+      {isPublic ? ''
+        : <>
+          <Button color="danger" size="sm" onClick={() => handleClick('delete')}>Delete Pin</Button>
+          <Button board-btn color="light" size="sm" onClick={() => handleClick('edit')}>{ editing ? 'Close Form' : 'Edit Pin'}</Button>
+        </>
+      }
       {
         editing && <AddPinForm
           formTitle='Edit Pin'
@@ -65,7 +68,8 @@ PinCard.propTypes = {
   setBoardPins: PropTypes.func,
   boardId: PropTypes.string,
   boards: PropTypes.string,
-  user: PropTypes.any
+  user: PropTypes.any,
+  isPublic: PropTypes.bool
 };
 
 export default PinCard;
