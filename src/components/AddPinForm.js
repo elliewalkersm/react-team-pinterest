@@ -104,7 +104,6 @@ function AddPinForm({
         <Label>Assign to a Board</Label>
         <Input type='select'
           name='boardId'
-          // value={boards.title}
           onChange={handleSelectChange}
         >
           <option hidden value=''>Select a Board</option>
@@ -115,6 +114,14 @@ function AddPinForm({
             {board.title}
           </option>)}
         </Input>
+        <Label check>
+          <Input
+            name='public'
+            type='checkbox'
+            value={Boolean}
+          />
+          Public Pin
+        </Label><br />
         <Button color='success' type='submit'>Submit</Button>
       </Form>
     </div>
