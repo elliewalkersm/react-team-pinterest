@@ -19,6 +19,14 @@ const NavBar = ({ user }) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const authenticated = () => (
+    <Nav className="mr-auto" navbar>
+      <NavItem><Link className="nav-link" to="/boards">Boards</Link></NavItem>
+      <NavItem><Link className="nav-link" to="/add-pins">Add Pin</Link></NavItem>
+      <NavItem><Link className="nav-link" to="/add-boards">Add Board</Link></NavItem>
+    </Nav>
+  );
+
   return (
     <div className="navbar-container">
       <Navbar color="light" light expand="xl" sticky="top">
@@ -29,12 +37,7 @@ const NavBar = ({ user }) => {
         </Nav>
         <Input fluid="true" className="search-bar-input-container ml-2 mr-2" type="text" size="sm" placeholder="search" />
         <NavbarToggler onClick={toggle} /><Collapse isOpen={isOpen} navbar>
-
-          <Nav className="mr-auto" navbar>
-            <NavItem><Link className="nav-link" to="/boards">Boards</Link></NavItem>
-            <NavItem><Link className="nav-link" to="/add-pins">Pins</Link></NavItem>
-            <NavItem><Link className="nav-link" to="/add-boards">Board</Link></NavItem>
-          </Nav>
+          { user && authenticated()}
 
           {user !== null && <div className='auth-btn-container'>
             {user ? <Button className="signOut-btn ml-3" color='danger' size="sm" onClick={signOutUser}>Sign Out</Button>
