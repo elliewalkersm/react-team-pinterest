@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -8,7 +9,6 @@ import {
 } from 'reactstrap';
 import { addPin } from '../helpers/data/pinsData';
 import { createBoardPin } from '../helpers/data/board_pinsData';
-// import { createBoardPin } from '../helpers/data/board_pinsData';
 
 function AddPinForm({
   user, formTitle, boards, setBoards, ...pinInfo
@@ -18,11 +18,11 @@ function AddPinForm({
     imageUrl: pinInfo?.imageUrl || '',
     description: pinInfo?.description || '',
     articleLink: pinInfo?.articleLink || '',
-    uid: user.uid,
+    uid: user?.uid,
     id: pinInfo?.id || null
   });
   const [boardPinRelationship, setBoardPinRelationship] = useState({});
-  console.warn(boardPinRelationship);
+  const history = useHistory();
 
   const handleInputChange = (e) => {
     setPin((prevState) => ({
@@ -45,6 +45,7 @@ function AddPinForm({
       const getboardId = boardPinRelationship.boardId;
       createBoardPin(getboardId, response);
     });
+    history.push(`/boards/${boardPinRelationship.boardId}`);
   };
 
   return (
