@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import {
-  CardImg, CardBody,
-  CardTitle, Button, Card
+  CardImg,
+  CardBody,
+  CardTitle,
+  Button,
+  Card,
+  CardText
 } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -36,13 +40,15 @@ const BoardCard = ({
   return (
     <Card className="board-card">
     <CardBody>
-      <CardImg top width="100%" src={boardInfo.imageUrl} alt="Card image cap" />
-      <CardTitle img-fluid="true" tag="h5">{boardInfo.title}</CardTitle>
+      <CardImg top img-fluid="true" width="100%" src={boardInfo.imageUrl} alt="Card image cap" />
+      <CardTitle className="card-title mt-4 mb-3" tag="h5">{boardInfo.title}</CardTitle>
+      <CardText className="card-text mb-4" >{boardInfo.description}</CardText>
       <Button board-btn color="light" size="sm" onClick={viewPins}>View Pins</Button>
+      <hr></hr>
       <Button board-btn color="light" size="sm" onClick={() => handleClick('delete')}><i className="fas fa-trash"></i></Button>
       <Button board-btn color="light" size="sm" onClick={() => handleClick('edit')}>
         { editing ? 'Close Form' : 'Edit Board'}
-      </Button>
+     </Button>
       {
         editing && <AddBoardForm
           formTitle='Edit Board'

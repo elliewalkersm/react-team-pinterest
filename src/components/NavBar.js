@@ -20,26 +20,26 @@ const NavBar = ({ user }) => {
   const toggle = () => setIsOpen(!isOpen);
 
   const authenticated = () => (
-    <Nav className="mr-auto" navbar>
-      <NavItem><Link className="nav-link" to="/boards">Boards</Link></NavItem>
-      <NavItem><Link className="nav-link" to="/add-pins">Add Pin</Link></NavItem>
-      <NavItem><Link className="nav-link" to="/add-boards">Add Board</Link></NavItem>
+    <Nav className="ml-auto" navbar>
+      <NavItem><Link className="nav-link mr-3" to="/boards">Boards</Link></NavItem>
+      <NavItem><Link className="nav-link mr-3" to="/add-pins">Add Pin</Link></NavItem>
+      <NavItem><Link className="nav-link mr-3" to="/add-boards">Add Board</Link></NavItem>
     </Nav>
   );
 
   return (
-    <div className="navbar-container">
+    <div className="navbar-container mx-auto">
       <Navbar color="light" light expand="xl" sticky="top">
         <Nav className="mr-auto" navbar>
-          <NavbarBrand href="/"><img src={pinterestBadge} alt="Logo" className="logo" /></NavbarBrand>
-          <NavItem><a className="nav-link" href="https://www.pinterest.com/">Home</a></NavItem>
-          <NavItem><Link className="nav-link" href="#">Favorites</Link></NavItem>
+          <NavbarBrand href="/"><img src={pinterestBadge} alt="Logo" className="logo mr-2 ml-3" /></NavbarBrand>
+          <NavItem><a className="nav-link mr-3 ml-3" href="https://www.pinterest.com/">Home</a></NavItem>
+          <NavItem><Link className="nav-link mr3" href="#">Favorites</Link></NavItem>
         </Nav>
-        <Input fluid="true" className="search-bar-input-container ml-2 mr-2" type="text" size="sm" placeholder="search" />
+        <Input fluid="true" className="search-bar-input-container w-50 ml-2 mr-2" type="text" size="sm" placeholder="search" />
         <NavbarToggler onClick={toggle} /><Collapse isOpen={isOpen} navbar>
           { user && authenticated()}
 
-          {user !== null && <div className='auth-btn-container'>
+          {user !== null && <div className='auth-btn-container ml-2 mr-4'>
             {user ? <Button className="signOut-btn ml-3" color='danger' size="sm" onClick={signOutUser}>Sign Out</Button>
               : <Button className="sign-in-btn ml-3" color='danger' size="sm" onClick={signInUser}>Sign In</Button>
             }

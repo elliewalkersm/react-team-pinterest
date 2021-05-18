@@ -62,12 +62,13 @@ function AddPinForm({
 
   return (
     <div>
-      <Form className='pin-form-container'
-      autoComplete='off'
-      onSubmit={handleSubmit}
+      <Form
+        className='pin-input-form'
+        autoComplete='off'
+        onSubmit={handleSubmit}
       >
         <h2>{formTitle}</h2>
-        <Label>Pin Title</Label>
+        <Label></Label>
         <Input
           name='title'
           type='text'
@@ -76,7 +77,7 @@ function AddPinForm({
           onChange={handleInputChange}
         >
         </Input>
-        <Label>Image</Label>
+        <Label></Label>
         <Input
           name='imageUrl'
           type='text'
@@ -85,7 +86,7 @@ function AddPinForm({
           onChange={handleInputChange}
         >
         </Input>
-        <Label>Description</Label>
+        <Label></Label>
         <Input
           name='description'
           type='textarea'
@@ -93,7 +94,7 @@ function AddPinForm({
           value={pin.description}
           onChange={handleInputChange}>
         </Input>
-        <Label>Article Link</Label>
+        <Label></Label>
         <Input
           name='articleLink'
           type='text'
@@ -101,8 +102,9 @@ function AddPinForm({
           value={pin.articleLink}
           onChange={handleInputChange}>
         </Input>
-        <Label>Assign to a Board</Label>
-        <Input type='select'
+        <Label></Label>
+        <Input
+          type='select'
           name='boardId'
           onChange={handleSelectChange}
         >
@@ -113,8 +115,8 @@ function AddPinForm({
           >
             {board.title}
           </option>)}
-        </Input>
-        <Label check>
+        </Input >
+        <Label check className="checkbox mt-4">
           <Input
             name='public'
             type='checkbox'
@@ -122,7 +124,7 @@ function AddPinForm({
           />
           Public Pin
         </Label><br />
-        <Button color='success' type='submit'>Submit</Button>
+        <Button className="add-pin-submit-btn mt-4"color='success' size="sm" type='submit'>Submit</Button>
       </Form>
     </div>
   );

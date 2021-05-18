@@ -1,9 +1,5 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import 'variables';
-@import 'pins';
-@import 'boards';
-@import 'forms';
-@import 'navbar';
 
 #root {
   color: black;
@@ -13,34 +9,31 @@ body {
   background-color: $favColor !important;
 }
 
+.logo {
+  width: 1.5em;
+}
+
+.signOut-btn, sign-in-button {
+  width: 5.5em;
+}
+
+.board-card, .pin-card {
+  width: 18em;
+  margin: 1em;  
+  box-shadow: 0 8px 6px -6px rgb(112, 112, 112);
+}
+
 .board-form-container, .pin-form-container {
   margin: auto;
   width: 50%;
+  background-color: lightgrey;
+  padding: 2em;
+  box-shadow: 0 8px 6px -6px rgb(112, 112, 112);
+  border-radius:.5em;
+  width: 30em;
 }
 
-// CARDS
-.pin-card {
-  width: 18em;
-  margin: 1em;
-}
-
-.board-card {
-  width: 18em;
-  margin: 1em;  
-  border-radius: 1em;
-}
-
-// BOARDS 
-.board-card {
-  width: 20em;
-  margin: 1em;  
-  border-radius: 1em;
-}
-
-.signOut-btn {
-  width: 5.5em;
-}
-
-.sign-in-btn {
-  width: 5.5em;
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: black;
 }
