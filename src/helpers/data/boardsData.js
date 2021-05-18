@@ -1,7 +1,6 @@
 import 'firebase/auth';
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
-import { getSinglePin } from './pinsData';
 import { deletePinBoardRelationship } from './board_pinsData';
 
 const dbUrl = firebaseConfig.databaseURL;
@@ -11,6 +10,13 @@ const getBoards = (uid) => new Promise((resolve, reject) => {
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
+
+const getSinglePin = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/pins/${firebaseKey}.json`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 // GET SINGLE BOARD
 const getSingleBoard = (id) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/boards/${id}.json`)
@@ -85,8 +91,14 @@ const deleteBoard = (boardId, uid) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const updatePin = (pins, uid) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/pins/${pins.id}.json`, pins)
+    .then(() => getSingleBoardPins(uid).then(resolve))
+    .catch((error) => reject(error));
+});
+
 export {
   getBoards, getSingleBoard, addBoard, getSingleBoardPins,
   updateBoard, deleteBoardRelationships, deleteBoard, mergeBoardPinsData,
-  getSinglePinBoardRelationship, deletePin
+  getSinglePinBoardRelationship, deletePin, updatePin, getSinglePin
 };
