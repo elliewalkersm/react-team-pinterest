@@ -35,10 +35,16 @@ const getPinRelationships = (pinId) => new Promise((resolve, reject) => {
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
+const getPublicPins = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/pins.json?orderBy="public"&equalTo=true`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
 
 export {
   getPins,
   mergePinsData,
   addPin,
   getPinRelationships,
+  getPublicPins,
 };
