@@ -23,7 +23,7 @@ function Home({ user }) {
   }, []);
 
   return (
-    <div className="home-content-container d-flex flex-row">
+    <div className="home-content-container d-flex flex-row mt-5">
      {publicPins?.length && publicPins.map((object) => (
      <PinCard
       key={object.id}

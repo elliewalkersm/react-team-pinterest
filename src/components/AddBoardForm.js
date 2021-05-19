@@ -45,10 +45,11 @@ function AddBoardForm({
   };
 
   return (
-    <div className="board-form-container mt-5 d-flex justify-content-center">
-      <Form className='board-input-form'
-      autoComplete='off'
-      onSubmit={handleSubmit}
+    <div className="board-form-container mt-5">
+      <Form
+        className='board-input-form'
+        autoComplete='off'
+        onSubmit={handleSubmit}
       >
         <h2>{formTitle}</h2>
         <Label></Label>
@@ -77,7 +78,7 @@ function AddBoardForm({
           value={board.description}
           onChange={handleInputChange}>
         </Input>
-        <Button className="board-form-submit-btn mt-4"color='success' size="sm" type='submit'>Submit</Button>
+        <Button className="board-form-submit-btn mt-4" color='success' size="sm" type='submit'>Submit</Button>
       </Form>
     </div>
   );

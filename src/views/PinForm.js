@@ -6,7 +6,7 @@ function PinForm({
   user, setPin, boards, setBoards
 }) {
   return (
-    <div>
+    <div className="pin-form-container mx-auto W-100 mt-5">
       <AddPinForm
         formTitle='Add Pin'
         user={user}
