@@ -6,7 +6,8 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-import { addBoard } from '../helpers/data/boardsData';
+import { useHistory } from 'react-router-dom';
+import { addBoard, updateBoard } from '../helpers/data/boardsData';
 
 function AddBoardForm({
   user, setBoards, formTitle, ...boardInfo
@@ -19,6 +20,8 @@ function AddBoardForm({
     id: boardInfo?.id || null
   });
 
+  const history = useHistory();
+
   const handleInputChange = (e) => {
     setBoard((prevState) => ({
       ...prevState,
@@ -28,17 +31,28 @@ function AddBoardForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBoard(board, user).then(setBoards);
+    if (board.id) {
+      updateBoard(board, user.uid).then((boardsArray) => {
+        setBoards(boardsArray);
+        history.push('/boards');
+      });
+    } else {
+      addBoard(board, user.uid).then((response) => {
+        setBoards(response);
+        history.push('/boards');
+      });
+    }
   };
 
   return (
-    <div>
-      <Form className='board-form-container'
-      autoComplete='off'
-      onSubmit={handleSubmit}
+    <div className="board-form-container mt-5">
+      <Form
+        className='board-input-form'
+        autoComplete='off'
+        onSubmit={handleSubmit}
       >
         <h2>{formTitle}</h2>
-        <Label>Board Title</Label>
+        <Label></Label>
         <Input
           name='title'
           type='text'
@@ -47,7 +61,7 @@ function AddBoardForm({
           onChange={handleInputChange}
         >
         </Input>
-        <Label>Image</Label>
+        <Label></Label>
         <Input
           name='imageUrl'
           type='text'
@@ -56,7 +70,7 @@ function AddBoardForm({
           onChange={handleInputChange}
         >
         </Input>
-        <Label>Description</Label>
+        <Label></Label>
         <Input
           name='description'
           type='textarea'
@@ -64,7 +78,7 @@ function AddBoardForm({
           value={board.description}
           onChange={handleInputChange}>
         </Input>
-        <Button color='success' type='submit'>Submit</Button>
+        <Button className="board-form-submit-btn mt-4" color='success' size="sm" type='submit'>Submit</Button>
       </Form>
     </div>
   );
@@ -72,7 +86,7 @@ function AddBoardForm({
 
 AddBoardForm.propTypes = {
   user: PropTypes.any,
-  formTitle: PropTypes.string,
+  formTitle: PropTypes.string.isRequired,
   boardInfo: PropTypes.object,
   setBoards: PropTypes.func,
 };

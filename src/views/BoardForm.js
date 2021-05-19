@@ -4,7 +4,7 @@ import AddBoardForm from '../components/AddBoardForm';
 
 function BoardForm({ user, setBoards }) {
   return (
-    <div>
+    <div className="board-form mx-auto W-100">
       <AddBoardForm
         formTitle='Add Board'
         user={user}

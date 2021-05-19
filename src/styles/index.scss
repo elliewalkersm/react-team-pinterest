@@ -2,15 +2,37 @@
 @import 'variables';
 
 #root {
-  color: green;
-  background-color: black;
+  color: black;
 }
 body {
   height: 100vh;
   background-color: $favColor !important;
 }
 
-.board-form-container {
+.logo {
+  width: 1.5em;
+}
+
+.signOut-btn, sign-in-button {
+  width: 5.5em;
+}
+
+.board-card, .pin-card {
+  width: 18em;
+  margin: 1em;  
+  box-shadow: 0 8px 6px -6px rgb(112, 112, 112);
+}
+
+.board-form-container, .pin-form-container {
   margin: auto;
   width: 50%;
+  background-color: lightgrey;
+  padding: 2em;
+  box-shadow: 0 8px 6px -6px rgb(112, 112, 112);
+  border-radius:.5em;
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: black;
 }

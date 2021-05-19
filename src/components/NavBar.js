@@ -9,7 +9,9 @@ import {
   Nav,
   NavItem,
   Button,
+  Input
 } from 'reactstrap';
+import pinterestBadge from '../styles/assets/pinterestBadge.webp';
 import { signInUser, signOutUser } from '../helpers/auth';
 
 const NavBar = ({ user }) => {
@@ -18,36 +20,31 @@ const NavBar = ({ user }) => {
   const toggle = () => setIsOpen(!isOpen);
 
   const authenticated = () => (
-    <>
-      <NavItem>
-        <Link className="nav-link" to="/boards">Boards</Link>
-      </NavItem>
-      <NavItem>
-        <Link className="nav-link" to="/add-pins">Add Pins</Link>
-      </NavItem>
-      <NavItem>
-        <Link className="nav-link" to="/add-boards">Add Board</Link>
-      </NavItem>
-    </>
+    <Nav className="ml-auto" navbar>
+      <NavItem><Link className="nav-link mr-3" to="/boards">Boards</Link></NavItem>
+      <NavItem><Link className="nav-link mr-3" to="/add-pins">Add Pin</Link></NavItem>
+      <NavItem><Link className="nav-link mr-3" to="/add-boards">Add Board</Link></NavItem>
+    </Nav>
   );
 
   return (
-    <div>
-      <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/">Home</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            { user && authenticated() }
-          </Nav>
-          { user !== null
-            && <div className='auth-btn-container'>
-                {
-                  user ? <Button color='danger' onClick={signOutUser}>SignOut?</Button>
-                    : <Button color='info' onClick={signInUser}>SignIN!</Button>
-                }
-              </div>
+    <div className="navbar-container mx-auto">
+      <Navbar color="light" light expand="xl" sticky="top">
+        <Nav className="mr-auto" navbar>
+          <NavbarBrand href="/"><img src={pinterestBadge} alt="Logo" className="logo mr-2 ml-3" /></NavbarBrand>
+          <NavItem><a className="nav-link mr-3 ml-3" href="https://www.pinterest.com/">Home</a></NavItem>
+          <NavItem><Link className="nav-link mr3" href="#">Favorites</Link></NavItem>
+        </Nav>
+        <Input fluid="true" className="search-bar-input-container w-50 ml-2 mr-2" type="text" size="sm" placeholder="search" />
+        <NavbarToggler onClick={toggle} /><Collapse isOpen={isOpen} navbar>
+          { user && authenticated()}
+
+          {user !== null && <div className='auth-btn-container ml-2 mr-4'>
+            {user ? <Button className="signOut-btn ml-3" color='danger' size="sm" onClick={signOutUser}>Sign Out</Button>
+              : <Button className="sign-in-btn ml-3" color='danger' size="sm" onClick={signInUser}>Sign In</Button>
             }
+          </div>
+          }
         </Collapse>
       </Navbar>
     </div>
