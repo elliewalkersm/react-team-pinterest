@@ -27,7 +27,8 @@ function Pins({ pins, setPins, user }) {
 
 Pins.propTypes = {
   pins: PropTypes.array.isRequired,
-  setPins: PropTypes.func.isRequired
+  setPins: PropTypes.func.isRequired,
+  user: PropTypes.any,
 };
 
 export default Pins;
