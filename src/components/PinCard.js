@@ -60,7 +60,6 @@ const PinCard = ({
           />
         }
         <Button className="pin-delete-btn" color="light" size="sm" onClick={() => handleClick('delete')}><i className="fas fa-trash mr-2 ml-2"></i></Button>
-
       </CardBody>
     </Card>
   );
